@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace Domain.Domain.DTO;
 public class RealTimeHandshakeParams
 {
-    public string Username { get; set; }
-    public string ConnectionId { get; set; }
+    public string username { get; set; }
+    public string sessionId { get; set; }
 }

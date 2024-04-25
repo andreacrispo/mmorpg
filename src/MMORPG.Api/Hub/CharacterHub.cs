@@ -19,8 +19,9 @@ public class CharacterHub : Hub
 
     public override async Task OnConnectedAsync()
     {
-        // await Clients.Client(Context.ConnectionId).SendAsync($"Welcome {Context.ConnectionId}");
         await base.OnConnectedAsync();
+        string msg = _realTimeCharacterService.GetHandShake(Context.ConnectionId);
+        await Clients.Client(Context.ConnectionId).SendAsync(msg);
     }
 
     public override Task OnDisconnectedAsync(Exception? exception)
@@ -34,7 +35,7 @@ public class CharacterHub : Hub
         await _realTimeCharacterService.HandshakeConnect(Context.ConnectionId, message);
     }
 
-    public async Task SendMessage(string message)
+    public async Task ReceiveMessage(string message)
     {
         await _realTimeCharacterService.HandleMessage(message);
     }

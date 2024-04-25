@@ -36,7 +36,8 @@ public class CharacterBackgroundService : BackgroundService
            && await timer.WaitForNextTickAsync(stoppingToken))
         {
             List<RealTimeCharacterParams> charactersConnected = await realTimeCharacterService.GetConnectedCharacters();
-            await _context.Clients.All.SendAsync(JsonSerializer.Serialize(charactersConnected), stoppingToken);
+            string msg = JsonSerializer.Serialize(charactersConnected);
+            await _context.Clients.All.SendAsync(msg, stoppingToken);
         }
 
 

@@ -9,4 +9,5 @@ public interface IRealTimeCharacterService
     void Disconnect(string connectionId);
     Task<List<RealTimeCharacterParams>> GetConnectedCharacters();
     Task<bool> HandleMessage(string message);
+    string GetHandShake(string connectionId);
 }

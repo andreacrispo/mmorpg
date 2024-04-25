@@ -30,7 +30,7 @@ public class RealTimeCharacterService : IRealTimeCharacterService
         if (messageParams == null)
             return Task.FromResult(false);
 
-        bool result = _connectedUsers.TryAdd(connectionId, messageParams.Username);
+        bool result = _connectedUsers.TryAdd(connectionId, messageParams.username);
 
         return Task.FromResult(result);
     }
@@ -98,4 +98,14 @@ public class RealTimeCharacterService : IRealTimeCharacterService
         };
     }
 
+    public string GetHandShake(string connectionId)
+    {
+        RealTimeHandshakeParams handshake = new RealTimeHandshakeParams()
+        {
+            sessionId = connectionId,
+            username = string.Empty
+        };
+
+        return JsonSerializer.Serialize<RealTimeHandshakeParams>(handshake);
+    }
 }
