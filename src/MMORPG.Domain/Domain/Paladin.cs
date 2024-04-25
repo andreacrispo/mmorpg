@@ -14,7 +14,8 @@ namespace MMORPG.Domain
             this.initHp = hp;
             this.resistance = 4;
             this.maxRange = 200;
-            this.position = Position.At(0, 0);
+            this.position = Position.At(0, 0, 0);
+            this.rotation = Rotation.At(0, 0, 0);
             this.level = 1;
         }
 

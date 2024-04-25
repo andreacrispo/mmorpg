@@ -135,8 +135,8 @@ namespace MMORPG
         {
             Character paladin = new Paladin(new PaladinRandomDataMocked());
             Character wizard = new Wizard(new WizardRandomDataMocked());
-            paladin.Position = Position.At(10, 0);
-            wizard.Position = Position.At(5, 0);
+            paladin.Position = Position.At(10, 0, 0);
+            wizard.Position = Position.At(5, 0, 0);
             wizard.Attack(paladin);
             Assert.True(paladin.Hp < paladin.InitHp);
         }
@@ -146,8 +146,8 @@ namespace MMORPG
         {
             Character paladin = new Paladin(new PaladinRandomDataMocked());
             Character wizard = new Wizard(new WizardRandomDataMocked());
-            paladin.Position = Position.At(1500, 0);
-            wizard.Position = Position.At(5, 0);
+            paladin.Position = Position.At(1500, 0, 0);
+            wizard.Position = Position.At(5, 0, 0);
             wizard.Attack(paladin);
             Assert.AreEqual(paladin.InitHp, paladin.Hp);
         }

@@ -3,10 +3,16 @@
 namespace Domain.Domain.DTO;
 public class RealTimeCharacterParams
 {
+
     public string SessionId { get; set; }
     public int CharacterId { get; set; }
     public double PositionX { get; set; }
     public double PositionY { get; set; }
+    public double PositionZ { get; set; }
+
+    public double RotationX { get; set; }
+    public double RotationY { get; set; }
+    public double RotationZ { get; set; }
 
 
     public MoveDirection MoveDirection { get; set; }

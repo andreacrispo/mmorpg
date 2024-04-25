@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Text.Json;
+using Domain.Domain;
 using Domain.Domain.DTO;
 using MMORPG.Domain;
 using MMORPG.Service;
@@ -60,7 +61,7 @@ public class RealTimeCharacterService : IRealTimeCharacterService
         switch (messageParams.ActionType)
         {
             case ActionType.Movement:
-                this._characterService.UpdatePosition(messageParams.CharacterId, Position.At(messageParams.PositionX, messageParams.PositionY), messageParams.MoveDirection);
+                this.HandleMovement(messageParams);
                 break;
             case ActionType.Attack:
                 this._characterService.Attack(messageParams.CharacterId, messageParams.TargetId);
@@ -71,7 +72,11 @@ public class RealTimeCharacterService : IRealTimeCharacterService
 
     }
 
-
+    private void HandleMovement(RealTimeCharacterParams messageParams)
+    {
+        this._characterService.UpdatePosition(messageParams.CharacterId, Position.At(messageParams.PositionX, messageParams.PositionY, messageParams.PositionZ), messageParams.MoveDirection);
+        this._characterService.UpdateRotation(messageParams.CharacterId, Rotation.At(messageParams.RotationX, messageParams.RotationY, messageParams.RotationZ));
+    }
 
     private RealTimeCharacterParams ToParams(Character character)
     {
@@ -80,6 +85,7 @@ public class RealTimeCharacterService : IRealTimeCharacterService
             CharacterId = character.Id,
             PositionX = character.Position.X,
             PositionY = character.Position.Y,
+            PositionZ = character.Position.Z,
 
             MoveDirection = character.MoveDirection,
             Hp = character.Hp,

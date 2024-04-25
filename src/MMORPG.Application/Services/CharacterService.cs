@@ -1,4 +1,5 @@
 
+using Domain.Domain;
 using MMORPG.Domain;
 using MMORPG.Domain.Entity;
 using MMORPG.Repository;
@@ -59,11 +60,26 @@ namespace MMORPG.Service
 
             entity.PositionX = newPosition.X;
             entity.PositionY = newPosition.Y;
+            entity.PositionZ = newPosition.Z;
             entity.MoveDirection = moveDirection;
 
             CharacterEntity updated = await this.repository.Update(entity);
             return this.characterFactory.GetCharacter(updated);
 
+        }
+
+        public async Task<Character?> UpdateRotation(int characterId, Rotation rotation)
+        {
+            CharacterEntity? entity = await this.repository.FindById(characterId);
+            if (entity == null)
+                return null;
+
+            entity.RotationX = rotation.X;
+            entity.RotationY = rotation.Y;
+            entity.RotationZ = rotation.Z;
+
+            CharacterEntity updated = await this.repository.Update(entity);
+            return this.characterFactory.GetCharacter(updated);
         }
 
         public async Task<Character?> UpdateCharacter(Character updatedCharacter)
@@ -142,10 +158,13 @@ namespace MMORPG.Service
                 return false;
 
             character.Hp = character.InitHp;
-            character.Position = Position.At(50, 100);
+            character.Position = Position.At(0, 0, 0);
+            character.Rotation = Rotation.At(0, 0, 0);
             await this.UpdateCharacter(character);
 
             return true;
         }
+
+  
     }
 }

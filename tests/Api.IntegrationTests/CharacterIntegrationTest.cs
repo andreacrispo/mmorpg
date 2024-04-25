@@ -87,7 +87,7 @@ public class CharacterIntegrationTest
         Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         var returnedPosition = await response.Content.ReadFromJsonAsync<Position>();
 
-        var expectedPosition = Position.At(8, 2);
+        var expectedPosition = Position.At(8, 2, 0);
         Assert.That(returnedPosition.X, Is.EqualTo(expectedPosition.X));
         Assert.That(returnedPosition.Y, Is.EqualTo(expectedPosition.Y));
     }

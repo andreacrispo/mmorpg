@@ -1,4 +1,6 @@
 
+using Domain.Domain;
+
 namespace MMORPG.Domain
 {
     public abstract class Character : Target
@@ -11,6 +13,7 @@ namespace MMORPG.Domain
         protected string username;
         protected Faction? faction;
         protected Position position;
+        protected Rotation rotation;
         protected MoveDirection moveDirection = MoveDirection.None;
         protected RandomDataGeneratorInterface randomDataGenerator;
         protected CharacterClass characterClass;
@@ -56,6 +59,11 @@ namespace MMORPG.Domain
             set => position = value;
         }
 
+        public Rotation Rotation
+        {
+            get => rotation;
+            set => rotation = value;
+        }
 
         public int Id
         {

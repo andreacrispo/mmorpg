@@ -1,4 +1,5 @@
-﻿using MMORPG.Domain;
+﻿using Domain.Domain;
+using MMORPG.Domain;
 using MMORPG.Domain.Entity;
 
 namespace MMORPG.Service
@@ -17,5 +18,6 @@ namespace MMORPG.Service
         Task<bool> Respawn(int characterId);
         Task<Character?> UpdateCharacter(Character updatedCharacter);
         Task<Character?> UpdatePosition(int characterId, Position newPosition, MoveDirection moveDirection);
+        Task<Character?> UpdateRotation(int characterId, Rotation rotation);
     }
 }

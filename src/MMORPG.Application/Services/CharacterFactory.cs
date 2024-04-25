@@ -1,3 +1,4 @@
+using Domain.Domain;
 using MMORPG.Domain;
 using MMORPG.Domain.Entity;
 
@@ -17,7 +18,8 @@ namespace MMORPG.Service
 
             instance.IsConnected = entity.IsConnected;
 
-            instance.Position = Position.At(entity.PositionX, entity.PositionY);
+            instance.Position = Position.At(entity.PositionX, entity.PositionY, entity.PositionZ);
+            instance.Rotation = Rotation.At(entity.RotationX, entity.RotationY, entity.RotationZ);
             instance.Hp = entity.Hp;
             MoveDirection moveDirection = entity.MoveDirection;
 
